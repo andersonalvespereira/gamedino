@@ -1,3 +1,8 @@
+:root {
+    --grey: #666666;
+    --font: Arial, Helvetica, sans-serif;
+}
+
 body {
     background: #fafafa;
 }
@@ -20,17 +25,17 @@ body {
 
 .scoreboard {
     text-align: center;
-    color: #666666;
+    color: var(--grey);
     margin-top: 50px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font);
     margin-top: 30px;
 }
 
 .game-over {
     text-align: center;
-    color: #666666;
+    color: var(--grey);
     margin-top: 50px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font);
 }
 
 

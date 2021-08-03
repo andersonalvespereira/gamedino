@@ -5,22 +5,22 @@ const scoreboard = document.querySelector('.scoreboard');
 let isJumping = false;
 let position = 0;
 let score = 0;
+let cactusSpeed = 5;
 
 function handleKeyUp(event) {
-    if(event.keyCode === 32) {
+  if(event.keyCode === 32) {
             if(!isJumping) {
             jump();
         } 
     }
 }
 
-
 function jump() {
     
     isJumping = true;
-
+   
     let upInterval = setInterval(() => {
-        if( position >= 150) {
+        if( position >= 200) {
             clearInterval(upInterval);
 
             // Descendo
@@ -45,26 +45,26 @@ function jump() {
 
 function createCactus() {
     const cactus = document.createElement('div');
-    let cactusPosition = 1000;
+    let cactusPosition = 1300;
     let randomTime = Math.random() * 6000;
         
     cactus.classList.add('cactus');
-    cactus.style.left = 1000 + 'px';
+    cactus.style.left = 1300+ 'px';
     background.appendChild(cactus);
 
     let leftInterval = setInterval(() =>{
-        if(cactusPosition < -60) {
-            score++;
-            createScoreboard();
-            clearInterval(leftInterval);
-            background.removeChild(cactus);
-
+        if(cactusPosition < -60) {  
+          score++;
+          cactusSpeed++;
+          createScoreboard();
+          clearInterval(leftInterval);
+          background.removeChild(cactus);
 
         } else if (cactusPosition > 0 && cactusPosition < 60 && position < 60) {
             // Game Over
 
             clearInterval(leftInterval);
-            document.body.innerHTML = `<h2 class="game-over">Game Over!\nYour score is ${score}.</h2>`;
+            document.body.innerHTML = `<h2 class="game-over">Game Over!<br>Your score is ${score}.</h2>`;
             
         } else {
             cactusPosition -= 10;
@@ -76,9 +76,9 @@ function createCactus() {
 }
 
 function createScoreboard() {
-scoreboard.innerHTML = `<h1>Score: ${score}</h1>`;
+  scoreboard.innerHTML = `<h1>Score: ${score}</h1>`;
 }
 
-createScoreboard()
+createScoreboard();
 createCactus();
 document.addEventListener('keyup', handleKeyUp);
